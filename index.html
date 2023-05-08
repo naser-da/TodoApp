@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Todo App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .todo-container {
+      max-width: 400px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container todo-container">
+    <h1 class="display-4 text-center m-4">Todo App</h1>
+    <form id="todo-form">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" id="todo-input" placeholder="Enter a todo item" required>
+        <div class="input-group-append">
+          <button class="btn btn-primary" id="todo-btn">Add</button>
+        </div>
+      </div>
+    </form>
+    <ul id="todo-list" class="list-group"></ul>
+  </div>
+
+  <script>
+    document.getElementById('todo-btn').addEventListener('click', function(e) {
+      
+      var todoInput = document.getElementById('todo-input');
+      var todoText = todoInput.value.trim();
+
+        if (todoText !== '') {
+            var listItem = document.createElement('li');
+            listItem.className = 'list-group-item';
+            listItem.innerText = todoText;
+
+            var deleteButton = document.createElement('button');
+            deleteButton.className = 'btn btn-danger btn-sm float-right';
+            deleteButton.innerText = 'Delete';
+
+            deleteButton.addEventListener('click', function() {
+                listItem.remove();
+            });
+
+            listItem.appendChild(deleteButton);
+            document.getElementById('todo-list').appendChild(listItem);
+            todoInput.value = '';
+        }
+    });
+    
+</script>
+</body>
+</html>
